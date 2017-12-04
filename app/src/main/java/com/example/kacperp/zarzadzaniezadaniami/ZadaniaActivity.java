@@ -1,13 +1,17 @@
 package com.example.kacperp.zarzadzaniezadaniami;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,6 +63,8 @@ public class ZadaniaActivity extends AppCompatActivity {
                         Zadania zad = new Zadania();
                         JSONObject jsonobject = responeJSON.getJSONObject(i);
 
+                        zad.Id = jsonobject.getInt("Id");
+
                         zad.CzyZrobione = jsonobject.getBoolean("CzyZrobione");
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -83,7 +90,7 @@ public class ZadaniaActivity extends AppCompatActivity {
                         ZadaniaZApi.add(zad);
                     }
                     int i = 1;
-                    Context context = getApplicationContext();
+                    final Context context = getApplicationContext();
                     TableLayout Tablica = (TableLayout) findViewById(R.id.TablicaZadan);
 
                     for (Zadania zad : ZadaniaZApi)
@@ -94,14 +101,16 @@ public class ZadaniaActivity extends AppCompatActivity {
                         String CurrentDateInString =new SimpleDateFormat(pattern).format(new Date());
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                         Date CurrentDate = dateFormat.parse(CurrentDateInString);
-
+                        final Zadania ZadToPass = zad;
 
                         if(CurrentDate.compareTo(term) <= 0) {
 
                             TableRow Rzad = new TableRow(context);
+
                             TextView Temat = new TextView(context);
                             Temat.setText(zad.Temat);
                             Temat.setGravity(Gravity.CENTER);
+                            Temat.isClickable();
 
                             TextView Przedmiot = new TextView(context);
                             Przedmiot.setText(zad.NazwaZajec);
@@ -113,9 +122,24 @@ public class ZadaniaActivity extends AppCompatActivity {
                             Termin.setText(termin);
                             Termin.setGravity(Gravity.CENTER);
 
+                            TextView info = new TextView(context);
+                            info.setText(" INFO ");
+                            info.setTextColor(Color.RED);
+                            info.setGravity(Gravity.CENTER);
+                            info.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(ZadaniaActivity.this, ZadaniaSzczegolyActivity.class);
+                                    intent.putExtra("Zadanie", ZadToPass);
+                                    startActivity(intent);
+
+                                }
+                            });
+
+
                             Rzad.addView(Temat);
                             Rzad.addView(Przedmiot);
                             Rzad.addView(Termin);
+                            Rzad.addView(info);
                             Tablica.addView(Rzad, i);
                             i++;
                         }
@@ -139,5 +163,11 @@ public class ZadaniaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void DodajZadania(View view)
+    {
+        Intent intent = new Intent(ZadaniaActivity.this, DodajZadanieActivity.class);
+        startActivity(intent);
     }
 }

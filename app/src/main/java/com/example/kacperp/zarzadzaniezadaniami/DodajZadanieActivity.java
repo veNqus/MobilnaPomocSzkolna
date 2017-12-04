@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -14,22 +15,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static com.example.kacperp.zarzadzaniezadaniami.R.*;
-
-public class ZajeciaActivity extends AppCompatActivity {
+public class DodajZadanieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_zajecia);
+        setContentView(R.layout.activity_dodaj_zadanie);
 
         SharedPreferences mPrefs = getSharedPreferences("IDvalue", 0);
         String IdUsera = mPrefs.getString("idusera", "");
@@ -57,18 +54,24 @@ public class ZajeciaActivity extends AppCompatActivity {
                         Zajecia.add(zaj);
                     }
 
-                    ListView mListView = (ListView) findViewById(id.list);
+
+
                     String[] listItems = new String[Zajecia.size()];
 
                     for(int i = 0; i < Zajecia.size(); i++){
                         Zajecia zaj = Zajecia.get(i);
                         listItems[i] = zaj.Nazwa;
                     }
+
+
+                    final Spinner ListaPrzedmiotów = (Spinner) findViewById(R.id.spinner);
                     ArrayList<String> WszystkieZajecia = new ArrayList<String>();
                     WszystkieZajecia.addAll( Arrays.asList(listItems) );
                     Context context = getApplicationContext();
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,WszystkieZajecia);
-                    mListView.setAdapter(adapter);
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item,WszystkieZajecia);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ListaPrzedmiotów.setAdapter(adapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

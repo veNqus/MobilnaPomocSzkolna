@@ -22,6 +22,7 @@
             android:layout_marginTop="8dp"
             android:text="Dodaj Zadania"
             android:layout_gravity="center"
+            android:onClick="DodajZadania"
             app:layout_constraintBottom_toTopOf="@+id/TablicaZadan"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,8 +32,8 @@
 
         <TableLayout
             android:id="@+id/TablicaZadan"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:stretchColumns="0,1,2" android:layout_height="match_parent" android:layout_gravity="center_vertical">
 
@@ -52,6 +53,10 @@
                 android:background="@drawable/komorka"
                 android:gravity="center"
                 android:text="Termin"/>
+            <TextView
+                android:background="@drawable/komorka"
+                android:gravity="center"
+                android:text=" Info "/>
         </TableRow>
     </TableLayout>
     </LinearLayout>

@@ -6,4 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.kacperp.zarzadzaniezadaniami.ZajeciaActivity">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        </ListView>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
