@@ -99,7 +99,24 @@
                     android:maxLines="100"
                     android:scrollHorizontally="false"/>
             </TableRow>
+
+            <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/EdytujButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EDYTUJ"
+                android:onClick="Edytuj"/>
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/OznaczJakoZrobioneButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OZNACZ JAKO ZROBIONE"
+                android:onClick="OznaczJakoZrobione"/>
         </TableLayout>
+
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

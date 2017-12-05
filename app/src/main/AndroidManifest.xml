@@ -22,7 +22,8 @@
         <activity android:name=".ZadaniaActivity" />
         <activity android:name=".ZajeciaActivity" />
         <activity android:name=".ZadaniaSzczegolyActivity" />
-        <activity android:name=".DodajZadanieActivity"></activity>
+        <activity android:name=".DodajZadanieActivity" />
+        <activity android:name=".EdytujZadanieActivity"></activity>
     </application>
 
 </manifest>
