@@ -151,7 +151,7 @@ public class EdytujZadanieActivity extends AppCompatActivity {
                         String responseString = new String(response);
                         if (responseString.contains("OK")) {
                             Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "Zadanie zedytowane", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(context, "Zadanie zedytowane, wróć na stronę główną by wczytać zmiany", Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
                             Context context = getApplicationContext();

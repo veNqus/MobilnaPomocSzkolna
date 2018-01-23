@@ -27,8 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void Zaloguj(View viev) {
-        //Intent StartNewActivity = new Intent(this,NastepnaAktywnosc.class);
-        //startActivity(StartNewActivity);
+
         EditText Email = (EditText) findViewById(R.id.EmailText);
         EditText Haslo = (EditText) findViewById(R.id.PasswdText);
         RequestParams rp = new RequestParams();
